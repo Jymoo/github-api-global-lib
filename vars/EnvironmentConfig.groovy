@@ -1,14 +1,16 @@
 #!/usr/bin/env groovy
 
 /**
- * Shared Library: Environment Configuration
- * This script defines the required environment variables for ZAPScanner.
+ * Jenkins Shared Library for Configuring Environment Variables for ZAP Scans.
+ *
+ * Usage:
+ *   EnvironmentConfig()
  */
 
-def configure() {
+def call() {
     echo "Configuring environment variables for ZAP Scanner..."
 
-    // Set the environment variable dynamically
+    // Check and set the TARGET_URL environment variable
     if (!env.TARGET_URL) {
         env.TARGET_URL = 'https://badgeting-web-app.vercel.app/' // Default target URL
         echo "TARGET_URL is not set. Using default: ${env.TARGET_URL}"

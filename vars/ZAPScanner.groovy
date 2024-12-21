@@ -4,14 +4,13 @@
  * Jenkins Shared Library for ZAP Full Scan.
  * This script dynamically retrieves the target URL from an environment variable, ensures Docker and ZAP are set up, and performs a full scan.
  *
- * Usage in Jenkinsfile:
+ * Usage:
  *   ZAPScanner()
  */
 
 def call(String zapDockerImage = 'owasp/zap2docker-stable', String reportName = 'zap_full_report.html', String failOnRiskLevel = 'High') {
     // Configure environment variables using EnvironmentConfig
-    def envConfig = EnvironmentConfig()
-    envConfig.configure()
+    EnvironmentConfig()
 
     // Ensure Docker is installed and running
     ensureDockerInstalledAndRunning()
