@@ -10,7 +10,7 @@
 
 def call(String zapDockerImage = 'owasp/zap2docker-stable', String reportName = 'zap_full_report.html', String failOnRiskLevel = 'High') {
     // Configure environment variables using EnvironmentConfig
-    def envConfig = new com.example.zap.EnvironmentConfig()
+    def envConfig = EnvironmentConfig()
     envConfig.configure()
 
     // Ensure Docker is installed and running
