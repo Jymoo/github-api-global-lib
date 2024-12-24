@@ -5,38 +5,6 @@ def call(Map params = [:]) {
     def threagileYamlPath = params.threagileYamlPath ?: 'threagile.yaml'
     def outputDir = params.outputDir ?: 'results'
     def reportFile = params.reportFile ?: 'report.pdf'
-
-
-
-     // Check if Docker is installed
-    // def dockerInstalled = false
-    // try {
-    //     sh(script: "docker --version", returnStatus: true)
-    //     dockerInstalled = true
-    // } catch (Exception e) {
-    //     echo "Docker is not installed. Installing Docker..."
-    // }
-    
-    // // Install Docker if it's not installed
-    // if (!dockerInstalled) {
-    //     // For Ubuntu/Debian-based systems
-    //     sh '''
-    //         sudo apt-get update
-    //         sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-    //         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    //         echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    //         sudo apt-get update
-    //         sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-    //     '''
-    //     // Start Docker service
-    //     sh 'sudo systemctl enable docker'
-    //     sh 'sudo systemctl start docker'
-    // }
-
-
-
-
-
     
     
     // Check if the Docker image exists locally
@@ -58,7 +26,7 @@ def call(Map params = [:]) {
     // Run the Docker container with the provided command    docker run --rm -v \$(pwd):/app/work ${dockerImage} -verbose -model /app/work/${threagileYamlPath} -output /app/work/${outputDir}        docker run --rm -v /tmp:/app/work ${dockerImage} -verbose -model /app/work/${threagileYamlPath} -output /app/work/${outputDir}   docker run --rm -v /tmp:/app/work ${dockerImage} -verbose -model /app/work/${threagileYamlPath} -output /app/work/${outputDir}
     echo "Running Docker container..."
     sh """
-        docker run --rm -it -v "$(pwd)":/app/work threagile/threagile -verbose -model /app/work/threagile.yaml -output /app/work
+        docker run --rm -v \$(pwd):/app/work ${dockerImage} -verbose -model /app/work/${threagileYamlPath} -output /app/work/${outputDir}
     """
     
     // After running the container, check if the report.pdf file exists in the output directory
