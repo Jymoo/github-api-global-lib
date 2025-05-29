@@ -10,6 +10,14 @@ def call() {
         }
 
         stages {
+
+            stage('check env'){
+                steps{
+                    CheckEnv()
+                }
+                
+            }
+            
             stage('Clone') {
                 steps {
                     script {
