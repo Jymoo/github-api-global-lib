@@ -1,5 +1,5 @@
 def call() {
-    echo "Running Docker image..."
+    echo "Running Docker..."
     sh '''
         echo "Freeing port 7000 if it's in use..."
         container_id=$(docker ps -q --filter "publish=7000")
