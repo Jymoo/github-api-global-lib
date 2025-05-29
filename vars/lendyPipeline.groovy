@@ -42,13 +42,13 @@ def call() {
                 }
             }
 
-            // stage('Run Docker Image') {
-            //     steps {
-            //         script {
-            //             RunDocker()
-            //         }
-            //     }
-            // }
+            stage('Run Docker Image') {
+                steps {
+                    script {
+                        RunDocker()
+                    }
+                }
+            }
         }
 
         post {
